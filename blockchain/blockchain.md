@@ -334,15 +334,15 @@ contract EventDemo {
 **📡 Frontend lắng nghe event (Wagmi):**
 
 ```typescript
-import { useWatchContractEvent } from 'wagmi';
+import { useWatchContractEvent } from "wagmi";
 
 function EmployeeCheckInListener() {
   useWatchContractEvent({
-    address: '0x...',
+    address: "0x...",
     abi: contractABI,
-    eventName: 'EmployeeCheckedIn',
+    eventName: "EmployeeCheckedIn",
     onLogs(logs) {
-      console.log('New check-in:', logs);
+      console.log("New check-in:", logs);
       // Cập nhật UI
     },
   });
@@ -431,19 +431,19 @@ npx hardhat console --network localhost
 #### **Cấu hình hardhat.config.js:**
 
 ```javascript
-require('@nomicfoundation/hardhat-toolbox');
+require("@nomicfoundation/hardhat-toolbox");
 
 module.exports = {
-  solidity: '0.8.20',
+  solidity: "0.8.20",
   networks: {
     // Local development
     localhost: {
-      url: 'http://127.0.0.1:8545',
+      url: "http://127.0.0.1:8545",
     },
 
     // Private network (ví dụ: mạng công ty)
     company: {
-      url: 'http://192.168.1.100:8545',
+      url: "http://192.168.1.100:8545",
       accounts: [process.env.PRIVATE_KEY],
     },
 
@@ -478,14 +478,14 @@ Hệ thống deploy mặc định mới, mạnh mẽ hơn scripts truyền thố
 **File deploy: `ignition/modules/CheckIn.js`**
 
 ```javascript
-const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
-module.exports = buildModule('CheckInModule', (m) => {
+module.exports = buildModule("CheckInModule", (m) => {
   // Tham số constructor (nếu có)
-  const initialOwner = m.getParameter('owner', '0x...');
+  const initialOwner = m.getParameter("owner", "0x...");
 
   // Deploy contract
-  const checkIn = m.contract('CheckIn', [initialOwner]);
+  const checkIn = m.contract("CheckIn", [initialOwner]);
 
   // Return để có thể tham chiếu
   return { checkIn };
@@ -528,10 +528,10 @@ npx hardhat ignition deploy ./ignition/modules/CheckIn.js --network localhost
 ### 3.3. Testing Smart Contracts
 
 ```javascript
-const { expect } = require('chai');
-const { ethers } = require('hardhat');
+const { expect } = require("chai");
+const { ethers } = require("hardhat");
 
-describe('CheckIn Contract', function () {
+describe("CheckIn Contract", function () {
   let checkIn;
   let owner, employee1, employee2;
 
@@ -540,26 +540,31 @@ describe('CheckIn Contract', function () {
     [owner, employee1, employee2] = await ethers.getSigners();
 
     // Deploy contract
-    const CheckIn = await ethers.getContractFactory('CheckIn');
+    const CheckIn = await ethers.getContractFactory("CheckIn");
     checkIn = await CheckIn.deploy();
     await checkIn.waitForDeployment();
   });
 
-  it('Should add employee correctly', async function () {
+  it("Should add employee correctly", async function () {
     await checkIn.addEmployee(employee1.address);
     expect(await checkIn.isEmployee(employee1.address)).to.equal(true);
   });
 
-  it('Should emit event on check-in', async function () {
+  it("Should emit event on check-in", async function () {
     await checkIn.addEmployee(employee1.address);
 
     await expect(checkIn.connect(employee1).check())
-      .to.emit(checkIn, 'EmployeeCheckedIn')
-      .withArgs(employee1.address, (await ethers.provider.getBlockNumber()) + 1);
+      .to.emit(checkIn, "EmployeeCheckedIn")
+      .withArgs(
+        employee1.address,
+        (await ethers.provider.getBlockNumber()) + 1
+      );
   });
 
-  it('Should revert if non-employee tries to check-in', async function () {
-    await expect(checkIn.connect(employee2).check()).to.be.revertedWith('Not an employee');
+  it("Should revert if non-employee tries to check-in", async function () {
+    await expect(checkIn.connect(employee2).check()).to.be.revertedWith(
+      "Not an employee"
+    );
   });
 });
 ```
@@ -588,8 +593,8 @@ REPORT_GAS=true npx hardhat test
 Thư viện low-level, hiệu năng cao, type-safe để tương tác với Ethereum.
 
 ```typescript
-import { createPublicClient, http } from 'viem';
-import { mainnet } from 'viem/chains';
+import { createPublicClient, http } from "viem";
+import { mainnet } from "viem/chains";
 
 // Tạo client chỉ đọc (public)
 const client = createPublicClient({
@@ -599,7 +604,7 @@ const client = createPublicClient({
 
 // Đọc dữ liệu
 const balance = await client.getBalance({
-  address: '0x...',
+  address: "0x...",
 });
 
 const blockNumber = await client.getBlockNumber();
@@ -610,7 +615,7 @@ const blockNumber = await client.getBlockNumber();
 Thư viện React Hooks xây dựng trên Viem, quản lý state kết nối, account, network.
 
 ```typescript
-import { useAccount, useBalance, useConnect } from 'wagmi';
+import { useAccount, useBalance, useConnect } from "wagmi";
 
 function WalletInfo() {
   const { address, isConnected } = useAccount();
@@ -618,15 +623,19 @@ function WalletInfo() {
   const { connect, connectors } = useConnect();
 
   if (!isConnected) {
-    return <button onClick={() => connect({ connector: connectors[0] })}>
-      Connect Wallet
-    </button>;
+    return (
+      <button onClick={() => connect({ connector: connectors[0] })}>
+        Connect Wallet
+      </button>
+    );
   }
 
   return (
     <div>
       <p>Address: {address}</p>
-      <p>Balance: {balance?.formatted} {balance?.symbol}</p>
+      <p>
+        Balance: {balance?.formatted} {balance?.symbol}
+      </p>
     </div>
   );
 }
@@ -640,9 +649,9 @@ function WalletInfo() {
 
 ```typescript
 // src/config/wagmi.ts
-import { createConfig, http } from 'wagmi';
-import { mainnet, sepolia } from 'wagmi/chains';
-import { injected, walletConnect } from 'wagmi/connectors';
+import { createConfig, http } from "wagmi";
+import { mainnet, sepolia } from "wagmi/chains";
+import { injected, walletConnect } from "wagmi/connectors";
 
 export const config = createConfig({
   chains: [mainnet, sepolia],
@@ -663,11 +672,11 @@ export const config = createConfig({
 
 ```typescript
 // app/layout.tsx
-'use client';
+"use client";
 
-import { WagmiProvider } from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { config } from './config/wagmi';
+import { WagmiProvider } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { config } from "./config/wagmi";
 
 const queryClient = new QueryClient();
 
@@ -693,7 +702,7 @@ export default function RootLayout({ children }) {
 #### **1️⃣ Injected Connector (MetaMask, Rabby)**
 
 ```typescript
-import { injected } from 'wagmi/connectors';
+import { injected } from "wagmi/connectors";
 
 const injectedConnector = injected({
   shimDisconnect: true, // Xử lý disconnect đúng cách
@@ -717,15 +726,15 @@ function ConnectButton() {
 #### **2️⃣ WalletConnect (Mobile Wallets)**
 
 ```typescript
-import { walletConnect } from 'wagmi/connectors';
+import { walletConnect } from "wagmi/connectors";
 
 const walletConnectConnector = walletConnect({
-  projectId: 'YOUR_PROJECT_ID', // Lấy từ https://cloud.walletconnect.com
+  projectId: "YOUR_PROJECT_ID", // Lấy từ https://cloud.walletconnect.com
   metadata: {
-    name: 'My dApp',
-    description: 'My awesome dApp',
-    url: 'https://mydapp.com',
-    icons: ['https://mydapp.com/logo.png'],
+    name: "My dApp",
+    description: "My awesome dApp",
+    url: "https://mydapp.com",
+    icons: ["https://mydapp.com/logo.png"],
   },
   showQrModal: false, // Tự tạo UI QR code
 });
@@ -744,8 +753,8 @@ const walletConnectConnector = walletConnect({
 #### **Bước 2: Cấu hình Wagmi**
 
 ```typescript
-import { createConfig } from 'wagmi';
-import { walletConnect } from 'wagmi/connectors';
+import { createConfig } from "wagmi";
+import { walletConnect } from "wagmi/connectors";
 
 export const config = createConfig({
   chains: [sepolia], // ⚠️ Phải có ít nhất 1 public chain
@@ -768,37 +777,39 @@ export const config = createConfig({
 #### **Bước 3: Tạo URI và hiển thị QR Code**
 
 ```typescript
-'use client';
+"use client";
 
-import { QRCodeSVG } from 'qrcode.react';
-import { useEffect, useState } from 'react';
-import { useConnect } from 'wagmi';
+import { QRCodeSVG } from "qrcode.react";
+import { useEffect, useState } from "react";
+import { useConnect } from "wagmi";
 
 export default function QRCodeMethod() {
-  const [uri, setUri] = useState<string>('');
+  const [uri, setUri] = useState<string>("");
   const { connect, connectors } = useConnect();
 
-  const walletConnectConnector = connectors.find(c => c.id === 'walletConnect');
+  const walletConnectConnector = connectors.find(
+    (c) => c.id === "walletConnect"
+  );
 
   useEffect(() => {
     if (!walletConnectConnector) return;
 
     // 🎯 QUAN TRỌNG: Đăng ký listener TRƯỚC khi connect
     const handleMessage = ({ type, data }: any) => {
-      if (type === 'display_uri' && typeof data === 'string') {
-        setUri(data);  // URI chứa expiryTimestamp
+      if (type === "display_uri" && typeof data === "string") {
+        setUri(data); // URI chứa expiryTimestamp
       }
     };
 
     // Đăng ký listener
-    walletConnectConnector.emitter.on('message', handleMessage);
+    walletConnectConnector.emitter.on("message", handleMessage);
 
     // Kích hoạt kết nối
     connect({ connector: walletConnectConnector });
 
     // Cleanup
     return () => {
-      walletConnectConnector.emitter.off('message', handleMessage);
+      walletConnectConnector.emitter.off("message", handleMessage);
     };
   }, [walletConnectConnector, connect]);
 
@@ -815,37 +826,37 @@ useEffect(() => {
   if (!connector) return;
 
   // 1. Sự kiện nhận URI
-  connector.emitter.on('message', ({ type, data }) => {
-    if (type === 'display_uri') {
+  connector.emitter.on("message", ({ type, data }) => {
+    if (type === "display_uri") {
       setUri(data);
     }
   });
 
   // 2. Sự kiện kết nối thành công
-  connector.emitter.on('connect', async (data) => {
-    console.log('Connected!', data);
+  connector.emitter.on("connect", async (data) => {
+    console.log("Connected!", data);
 
     // Optional: Switch về localhost
     const provider = await connector.getProvider();
     try {
       await provider.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x7a69' }], // 31337 in hex
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x7a69" }], // 31337 in hex
       });
     } catch (error) {
-      console.error('Switch chain failed:', error);
+      console.error("Switch chain failed:", error);
     }
   });
 
   // 3. Sự kiện lỗi
-  connector.emitter.on('error', (error) => {
-    console.error('Connection error:', error);
+  connector.emitter.on("error", (error) => {
+    console.error("Connection error:", error);
   });
 
   // 4. Sự kiện ngắt kết nối
-  connector.emitter.on('disconnect', () => {
-    console.log('Disconnected');
-    setUri(''); // Reset QR
+  connector.emitter.on("disconnect", () => {
+    console.log("Disconnected");
+    setUri(""); // Reset QR
   });
 
   // Cleanup
@@ -861,7 +872,7 @@ QR code có thời gian hết hạn (thường 5 phút). Để làm mới:
 
 ```typescript
 const handleRefresh = async () => {
-  setUri(''); // Xóa QR cũ
+  setUri(""); // Xóa QR cũ
 
   // Ngắt kết nối cũ (nếu có)
   if (connector) {
@@ -886,31 +897,31 @@ const handleRefresh = async () => {
 #### **1️⃣ Read Contract (Không tốn gas)**
 
 ```typescript
-import { useReadContract } from 'wagmi';
+import { useReadContract } from "wagmi";
 
 function EmployeeStatus() {
   const { data: isEmployee } = useReadContract({
-    address: '0x...',
+    address: "0x...",
     abi: contractABI,
-    functionName: 'isEmployee',
-    args: ['0xUserAddress...'],
+    functionName: "isEmployee",
+    args: ["0xUserAddress..."],
   });
 
-  return <div>Employee status: {isEmployee ? 'Yes' : 'No'}</div>;
+  return <div>Employee status: {isEmployee ? "Yes" : "No"}</div>;
 }
 ```
 
 #### **2️⃣ Write Contract (Tốn gas) - Cách Đúng**
 
 ```typescript
-import { useWriteContract, useSimulateContract } from 'wagmi';
+import { useWriteContract, useSimulateContract } from "wagmi";
 
 function CheckInButton() {
   // 🎯 Bước 1: Simulate (dry run)
   const { data: simulateData } = useSimulateContract({
-    address: '0x...',
+    address: "0x...",
     abi: contractABI,
-    functionName: 'check',
+    functionName: "check",
     args: [],
   });
 
@@ -919,7 +930,7 @@ function CheckInButton() {
 
   const handleCheckIn = () => {
     if (!simulateData?.request) {
-      alert('Simulation failed! Transaction would revert.');
+      alert("Simulation failed! Transaction would revert.");
       return;
     }
 
@@ -928,7 +939,7 @@ function CheckInButton() {
 
   return (
     <button onClick={handleCheckIn} disabled={isPending}>
-      {isPending ? 'Processing...' : 'Check In'}
+      {isPending ? "Processing..." : "Check In"}
     </button>
   );
 }
@@ -946,14 +957,14 @@ function CheckInButton() {
 
 ```typescript
 function AddEmployeeButton() {
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const { writeContract } = useWriteContract();
 
   const handleAdd = () => {
     writeContract({
-      address: '0x...',
+      address: "0x...",
       abi: contractABI,
-      functionName: 'addEmployee',
+      functionName: "addEmployee",
       args: [address],
     });
   };
@@ -974,7 +985,7 @@ function AddEmployeeButton() {
 #### **4️⃣ Wait for Transaction**
 
 ```typescript
-import { useWaitForTransactionReceipt } from 'wagmi';
+import { useWaitForTransactionReceipt } from "wagmi";
 
 function TransactionStatus() {
   const { writeContract, data: hash } = useWriteContract();
@@ -998,7 +1009,7 @@ function TransactionStatus() {
 ### 4.6. Xử lý Errors
 
 ```typescript
-import { BaseError, ContractFunctionRevertedError } from 'viem';
+import { BaseError, ContractFunctionRevertedError } from "viem";
 
 function ErrorHandling() {
   const { writeContract, error } = useWriteContract();
@@ -1007,17 +1018,19 @@ function ErrorHandling() {
     if (error) {
       if (error instanceof BaseError) {
         // Xử lý revert với custom error
-        const revertError = error.walk((err) => err instanceof ContractFunctionRevertedError);
+        const revertError = error.walk(
+          (err) => err instanceof ContractFunctionRevertedError
+        );
 
         if (revertError instanceof ContractFunctionRevertedError) {
           const errorName = revertError.data?.errorName;
-          console.log('Contract reverted:', errorName);
+          console.log("Contract reverted:", errorName);
         }
       }
 
       // User rejected
-      if (error.message.includes('User rejected')) {
-        console.log('User cancelled transaction');
+      if (error.message.includes("User rejected")) {
+        console.log("User cancelled transaction");
       }
     }
   }, [error]);
@@ -1235,36 +1248,36 @@ certbot --nginx -d blockchain.company.com
 
 ```typescript
 // config/wagmi.ts
-import { defineChain } from 'viem';
+import { defineChain } from "viem";
 
 const companyChain = defineChain({
   id: 1337,
-  name: 'Company Blockchain',
-  network: 'company',
+  name: "Company Blockchain",
+  network: "company",
   nativeCurrency: {
     decimals: 18,
-    name: 'Ether',
-    symbol: 'ETH',
+    name: "Ether",
+    symbol: "ETH",
   },
   rpcUrls: {
     default: {
-      http: ['https://blockchain.company.com'], // Hoặc http://203.0.113.100:8545
+      http: ["https://blockchain.company.com"], // Hoặc http://203.0.113.100:8545
     },
     public: {
-      http: ['https://blockchain.company.com'],
+      http: ["https://blockchain.company.com"],
     },
   },
   blockExplorers: {
     default: {
-      name: 'Company Explorer',
-      url: 'https://explorer.company.com', // Optional
+      name: "Company Explorer",
+      url: "https://explorer.company.com", // Optional
     },
   },
 });
 
 export const config = createConfig({
   chains: [companyChain],
-  connectors: [injected(), walletConnect({ projectId: '...' })],
+  connectors: [injected(), walletConnect({ projectId: "..." })],
   transports: {
     [companyChain.id]: http(),
   },
@@ -1278,29 +1291,31 @@ function AddNetworkButton() {
   const handleAddNetwork = async () => {
     try {
       await window.ethereum.request({
-        method: 'wallet_addEthereumChain',
-        params: [{
-          chainId: '0x539',  // 1337 in hex
-          chainName: 'Company Blockchain',
-          nativeCurrency: {
-            name: 'Ether',
-            symbol: 'ETH',
-            decimals: 18
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: "0x539", // 1337 in hex
+            chainName: "Company Blockchain",
+            nativeCurrency: {
+              name: "Ether",
+              symbol: "ETH",
+              decimals: 18,
+            },
+            rpcUrls: ["https://blockchain.company.com"],
+            blockExplorerUrls: ["https://explorer.company.com"],
           },
-          rpcUrls: ['https://blockchain.company.com'],
-          blockExplorerUrls: ['https://explorer.company.com']
-        }]
+        ],
       });
 
-      alert('Network added successfully!');
+      alert("Network added successfully!");
     } catch (error) {
-      console.error('Failed to add network:', error);
+      console.error("Failed to add network:", error);
     }
   };
 
-  return <button onClick={handleAddNetwork}>
-    Add Company Network to Wallet
-  </button>;
+  return (
+    <button onClick={handleAddNetwork}>Add Company Network to Wallet</button>
+  );
 }
 ```
 
@@ -1326,7 +1341,7 @@ Xác thực người dùng bằng ví crypto, không cần password.
 
 ```typescript
 // app/api/auth/nonce/route.ts
-import { generateNonce } from 'siwe';
+import { generateNonce } from "siwe";
 
 export async function GET() {
   const nonce = generateNonce();
@@ -1338,7 +1353,7 @@ export async function GET() {
 }
 
 // app/api/auth/verify/route.ts
-import { SiweMessage } from 'siwe';
+import { SiweMessage } from "siwe";
 
 export async function POST(request: Request) {
   const { message, signature } = await request.json();
@@ -1369,8 +1384,8 @@ export async function POST(request: Request) {
 #### **Frontend:**
 
 ```typescript
-import { useAccount, useSignMessage } from 'wagmi';
-import { SiweMessage } from 'siwe';
+import { useAccount, useSignMessage } from "wagmi";
+import { SiweMessage } from "siwe";
 
 function SignInButton() {
   const { address, chainId } = useAccount();
@@ -1378,16 +1393,16 @@ function SignInButton() {
 
   const handleSignIn = async () => {
     // 1. Lấy nonce
-    const nonceRes = await fetch('/api/auth/nonce');
+    const nonceRes = await fetch("/api/auth/nonce");
     const { nonce } = await nonceRes.json();
 
     // 2. Tạo message
     const message = new SiweMessage({
       domain: window.location.host,
       address,
-      statement: 'Sign in to My Company dApp',
+      statement: "Sign in to My Company dApp",
       uri: window.location.origin,
-      version: '1',
+      version: "1",
       chainId,
       nonce,
     });
@@ -1398,16 +1413,16 @@ function SignInButton() {
     });
 
     // 4. Verify
-    const verifyRes = await fetch('/api/auth/verify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const verifyRes = await fetch("/api/auth/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message, signature }),
     });
 
     const { ok, session } = await verifyRes.json();
 
     if (ok) {
-      console.log('Signed in!', session);
+      console.log("Signed in!", session);
     }
   };
 
@@ -1551,16 +1566,19 @@ function LikeButton() {
 ### Lộ trình tiếp theo:
 
 1. **Advanced Solidity**
+
    - Upgradeable contracts (Proxy pattern)
    - ERC standards (ERC-20, ERC-721, ERC-1155)
    - Gas optimization techniques
 
 2. **Security**
+
    - Common vulnerabilities (Reentrancy, Front-running)
    - Audit với Slither, Mythril
    - Formal verification
 
 3. **Advanced dApp**
+
    - Subgraph (The Graph) cho indexing
    - IPFS integration
    - Multi-chain support
@@ -1597,3 +1615,11 @@ function LikeButton() {
 ---
 
 **Chúc mừng bạn đã hoàn thành hành trình học Blockchain Development! 🎉**
+
+---
+
+© 2025 hwHoai | [github.com/hwHoai](https://github.com/hwHoai) | License: MIT
+
+```
+
+```

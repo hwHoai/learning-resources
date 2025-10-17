@@ -114,3 +114,7 @@ This repository serves as a personal/team knowledge base for learning resources.
 ---
 
 **Happy Learning! 🚀**
+
+---
+
+© 2025 hwHoai | [github.com/hwHoai](https://github.com/hwHoai) | License: MIT

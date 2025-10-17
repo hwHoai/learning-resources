@@ -201,3 +201,7 @@ After mastering this topic, you should explore:
 **Last Updated:** [Date]  
 **Difficulty Level:** [Beginner/Intermediate/Advanced]  
 **Estimated Learning Time:** [X hours/days]
+
+---
+
+© 2025 hwHoai | [github.com/hwHoai](https://github.com/hwHoai) | License: MIT

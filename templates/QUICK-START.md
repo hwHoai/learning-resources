@@ -340,3 +340,11 @@ See existing resources for reference:
 ---
 
 **Happy documenting! 📝**
+
+---
+
+© 2025 hwHoai | [github.com/hwHoai](https://github.com/hwHoai) | License: MIT
+
+```
+
+```

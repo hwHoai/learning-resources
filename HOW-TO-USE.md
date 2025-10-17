@@ -438,3 +438,11 @@ Result: All useState declarations in blockchain folder
 ---
 
 **Last Updated:** October 16, 2025
+
+---
+
+© 2025 hwHoai | [github.com/hwHoai](https://github.com/hwHoai) | License: MIT
+
+```
+
+```
