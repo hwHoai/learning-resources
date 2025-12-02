@@ -25,13 +25,15 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 ### By Category
 
-| Category                            | Description                                   | Files                                       |
-| ----------------------------------- | --------------------------------------------- | ------------------------------------------- |
-| [🔗 Blockchain](#blockchain)        | Blockchain, Smart Contracts, dApp Development | [blockchain.md](./blockchain/blockchain.md) |
-| _Add more categories as you expand_ |                                               |                                             |
+| Category                                          | Description                                       | Files                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------- |
+| [🔗 Blockchain](#blockchain)                      | Blockchain, Smart Contracts, dApp Development     | [blockchain.md](./blockchain/blockchain.md) |
+| [🤖 AI & Machine Learning](#ai--machine-learning) | EEG Signal Processing, Time Series Classification | [AI/](./AI/)                                |
+| _Add more categories as you expand_               |                                                   |                                             |
 
 ### Recently Updated
 
+- **Dec 2, 2025** - [Time Series Classification](./AI/time_series_classification/time_series_classification.md)
 - **Oct 16, 2025** - [Blockchain & dApp Development](./blockchain/blockchain.md)
 
 ---
@@ -79,6 +81,70 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 ---
 
+### 🤖 AI & Machine Learning
+
+#### EEG Signal Processing
+
+**Files:**
+
+- [EEG Feature Extraction Application](./AI/EEG/EEG_feature_extraction_application.md)
+- [EEG Mental State Classification](./AI/EEG/EEG_mental_state_classification.md)
+
+**Topics Covered:**
+
+- ✅ EEG Signal Fundamentals
+- ✅ Feature Extraction Techniques
+  - Time-domain features
+  - Frequency-domain features (FFT, Power Spectral Density)
+  - Time-frequency analysis
+- ✅ Mental State Classification
+  - Data preprocessing
+  - Machine learning models
+  - Performance evaluation
+- ✅ Applications
+  - Brain-Computer Interfaces
+  - Cognitive state monitoring
+
+**Quick Links:**
+
+- [EEG_Feature Extraction](./AI/EEG/EEG_feature_extraction_application.md)
+- [Mental State Classification](./AI/EEG/EEG_mental_state_classification.md)
+
+#### Time Series Classification
+
+**Files:**
+
+- [Time Series Classification](./AI/time_series_classification/time_series_classification.md)
+- [Time Series Classification Notebook](./AI/time_series_classification/time_series_classification.ipynb)
+
+**Topics Covered:**
+
+- ✅ Time Series Fundamentals
+  - Problem types and when to use TSC
+  - Univariate vs multivariate series
+- ✅ Classification Methods
+  - Distance-based (DTW, k-NN)
+  - Shapelet-based
+  - Model ensembles (HIVE-COTE)
+  - Dictionary approach (SAX, BOSS)
+  - Interval-based (Time Series Forest)
+  - Deep learning (CNN, RNN, Transformer)
+- ✅ Practical Implementation
+  - Synthetic data generation
+  - DTW + k-NN examples
+  - Deep learning models
+- ✅ Libraries & Tools
+  - tslearn, sktime, pyts, tsfresh
+  - UCR/UEA datasets
+
+**Quick Links:**
+
+- [Distance-based Methods](./AI/time_series_classification/time_series_classification.md#distance-based)
+- [Deep Learning Approaches](./AI/time_series_classification/time_series_classification.md#deep-learning)
+- [Interactive Notebook](./AI/time_series_classification/time_series_classification.ipynb)
+
+---
+
 ### 🎯 [Add Your Next Topic Here]
 
 **File:** `[folder]/[file].md`
@@ -96,12 +162,12 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 ---
 
-## � Statistics
+## 📊 Statistics
 
-- **Total Topics:** 1
-- **Total Files:** 1
-- **Total Folders:** 1
-- **Last Updated:** October 16, 2025
+- **Total Topics:** 3
+- **Total Files:** 6
+- **Total Folders:** 4
+- **Last Updated:** December 2, 2025
 
 ---
 
