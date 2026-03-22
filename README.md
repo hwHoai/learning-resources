@@ -17,7 +17,7 @@
 
 This repository serves as a personal/team knowledge base for learning resources. Each topic is organized into its own folder with dedicated documentation files for easy access and reference.
 
-**Last Updated:** October 16, 2025
+**Last Updated:** March 23, 2026
 
 ---
 
@@ -25,14 +25,19 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 ### By Category
 
-| Category                                          | Description                                       | Files                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------- |
-| [🔗 Blockchain](#blockchain)                      | Blockchain, Smart Contracts, dApp Development     | [blockchain.md](./blockchain/blockchain.md) |
-| [🤖 AI & Machine Learning](#ai--machine-learning) | EEG Signal Processing, Time Series Classification | [AI/](./AI/)                                |
-| _Add more categories as you expand_               |                                                   |                                             |
+| Category                                          | Description                                                | Files                                       |
+| ------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------- |
+| [💻 Core Language](#core-language)                | JavaScript Core Concepts, Advanced Topics                  | [JavaScript_core.ipynb](./Core%20Language/) |
+| [📊 DSA](#data-structures--algorithms)            | Arrays, Coding Interview Problems, Algorithm Challenges    | [DSA/](./DSA/)                              |
+| [🎤 Interview Questions](#interview-questions)    | Technical Interview Prep, Common Interview Problems        | [interviews.md](./interview%20question/)    |
+| [🤖 AI & Machine Learning](#ai--machine-learning) | EEG Signal Processing, Time Series Classification, ML Core | [AI/](./AI/)                                |
+| [🔗 Blockchain](#blockchain)                      | Blockchain, Smart Contracts, dApp Development              | [blockchain.md](./blockchain/blockchain.md) |
 
 ### Recently Updated
 
+- **Mar 23, 2026** - [JavaScript Core](./Core%20Language/JavaScript_core.ipynb) - Event Loop, Closures, Prototypal Inheritance
+- **Mar 23, 2026** - [DSA Resources](./DSA/) - Array problems and Codility challenges
+- **Mar 23, 2026** - [Interview Questions](./interview%20question/interviews.md)
 - **Dec 2, 2025** - [Time Series Classification](./AI/time_series_classification/time_series_classification.md)
 - **Oct 16, 2025** - [Blockchain & dApp Development](./blockchain/blockchain.md)
 
@@ -42,7 +47,103 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 > Complete list of all learning resources in this repository. Click any link to jump directly to the file.
 
-### 🔗 Blockchain
+### � Core Language
+
+#### JavaScript Core Concepts
+
+**File:** [Core Language/JavaScript_core.ipynb](./Core%20Language/JavaScript_core.ipynb)
+
+**Topics Covered:**
+
+- ✅ Event Loop & Asynchronous Architecture
+  - Call Stack, Web APIs, Task Queues
+  - Microtask Queue (Promises) vs Macrotask Queue (setTimeout)
+  - Event Loop execution order
+- ✅ Scope & Closures
+  - Lexical Scope
+  - Closure mechanics and memory management
+  - Practical closure patterns
+- ✅ `this` Keyword & Execution Context
+  - Default, Implicit, Explicit Binding
+  - Arrow Functions & Lexical Binding
+  - Context-aware method patterns
+- ✅ Prototypal Inheritance
+  - Prototype Chain
+  - Constructor Functions
+  - Property Shadowing
+- ✅ Memory Management
+  - Stack vs Heap
+  - Pass-by-value vs Pass-by-reference
+  - Garbage Collection
+- ✅ ES6+ Features & Advanced Topics
+  - Hoisting (var/let/const)
+  - Type Coercion
+  - Event Delegation
+  - Promise Concurrency Patterns
+
+**Quick Links:**
+
+- [Event Loop & Async](./Core%20Language/JavaScript_core.ipynb#event-loop)
+- [Closures & Scope](./Core%20Language/JavaScript_core.ipynb#closures)
+- [this Binding Rules](./Core%20Language/JavaScript_core.ipynb#this-binding)
+- [Prototypal Inheritance](./Core%20Language/JavaScript_core.ipynb#prototypes)
+
+---
+
+### 📊 Data Structures & Algorithms
+
+**Files:**
+
+- [Array.md](./DSA/Array.md)
+- [Codility.md](./DSA/Codility.md)
+
+**Topics Covered:**
+
+- ✅ Array Operations
+  - Array fundamentals and techniques
+  - Common array algorithms
+  - Optimization strategies
+- ✅ Coding Interview Problems
+  - Codility challenges and solutions
+  - Algorithm patterns
+  - Complexity analysis (Time & Space)
+- ✅ Problem-Solving Approaches
+  - Two-pointer technique
+  - Sliding window
+  - Dynamic programming
+  - Greedy algorithms
+
+**Quick Links:**
+
+- [Array Fundamentals](./DSA/Array.md)
+- [Codility Problems](./DSA/Codility.md)
+
+---
+
+### 🎤 Interview Questions
+
+**File:** [interview question/interviews.md](./interview%20question/interviews.md)
+
+**Topics Covered:**
+
+- ✅ Technical Interview Preparation
+  - Common interview patterns
+  - Problem-solving strategies
+  - System design fundamentals
+- ✅ Behavioral Questions
+  - Communication tips
+  - Example responses
+  - Storytelling techniques
+- ✅ Language-Specific Topics
+  - JavaScript/TypeScript
+  - Algorithm optimization
+  - Best practices
+
+**Quick Links:**
+
+- [Interview Preparation Guide](./interview%20question/interviews.md)
+
+---
 
 **File:** [blockchain/blockchain.md](./blockchain/blockchain.md)
 
@@ -145,29 +246,14 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 ---
 
-### 🎯 [Add Your Next Topic Here]
-
-**File:** `[folder]/[file].md`
-
-**Topics Covered:**
-
-- Topic 1
-- Topic 2
-- Topic 3
-
-**Quick Links:**
-
-- [Subtopic 1](#)
-- [Subtopic 2](#)
-
 ---
 
 ## 📊 Statistics
 
-- **Total Topics:** 3
-- **Total Files:** 6
-- **Total Folders:** 4
-- **Last Updated:** December 2, 2025
+- **Total Topics:** 5
+- **Total Files:** 11+
+- **Total Folders:** 6
+- **Last Updated:** March 23, 2026
 
 ---
 
