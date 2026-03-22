@@ -51,7 +51,7 @@ This repository serves as a personal/team knowledge base for learning resources.
 
 #### JavaScript Core Concepts
 
-**File:** [Core Language/JavaScript_core.ipynb](./Core%20Language/JavaScript_core.ipynb)
+**File:** [Core Language/JavaScript_core.md](./Core%20Language/JavaScript_core.md)
 
 **Topics Covered:**
 
